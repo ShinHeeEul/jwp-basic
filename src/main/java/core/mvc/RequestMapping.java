@@ -18,7 +18,7 @@ import next.controller.user.UpdateUserController;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
-    private Map<String, Controller> mappings = new HashMap<>();
+    private final Map<String, Controller> mappings = new HashMap<>();
 
     void initMapping() {
         mappings.put("/", new HomeController());
@@ -31,7 +31,7 @@ public class RequestMapping {
         mappings.put("/users/create", new CreateUserController());
         mappings.put("/users/updateForm", new UpdateFormUserController());
         mappings.put("/users/update", new UpdateUserController());
-        mappings.put("/qna/show", new ShowController());
+        mappings.put("/qnas/show", new ShowController());
 
         logger.info("Initialized Request Mapping!");
     }
