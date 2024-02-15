@@ -12,6 +12,7 @@ import core.jdbc.JdbcTemplate;
 import core.jdbc.KeyHolder;
 import core.jdbc.PreparedStatementCreator;
 import core.jdbc.RowMapper;
+import next.model.Result;
 
 public class AnswerDao {
     public Answer insert(Answer answer) {
@@ -47,6 +48,17 @@ public class AnswerDao {
         };
 
         return jdbcTemplate.queryForObject(sql, rm, answerId);
+    }
+
+    public Result remove(long answerId) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        String sql = "DELETE FROM ANSWERS WHERE answerId = ?";
+        try {
+            jdbcTemplate.update(sql, answerId);
+        } catch(Exception e) {
+            return Result.fail(e.getMessage());
+        }
+        return Result.ok();
     }
 
     public List<Answer> findAllByQuestionId(long questionId) {
